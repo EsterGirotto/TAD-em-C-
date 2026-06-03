@@ -1,33 +1,40 @@
-using System;
+namespace Struct;
 
-struct Produto
+public struct Produto
 {
     public string nome;
     public double preco;
     public int quantidadeEstoque;
 
+    public Produto(string nome, double preco, int quantidadeEstoque)
+    {
+        this.nome = nome;
+        this.preco = preco;
+        this.quantidadeEstoque = quantidadeEstoque;
+    }
+
     public void aplicarCupomDescontoValor(double valor)
     {
-        preco -= valor;
+        this.preco -= valor;
     }
 
     public void aplicarCupomDescontoPorcentagem(double porcentagem)
     {
-        preco -= preco * (porcentagem / 100);
+        this.preco -= this.preco * (porcentagem / 100);
     }
 
-    public void verificarQuantidadeEmEstoque()
+    public string verificarQuantidadeEmEstoque()
     {
-        if (quantidadeEstoque > 0)
-            Console.WriteLine("Produto disponível");
-        else
-            Console.WriteLine("Sem estoque");
+        if (this.quantidadeEstoque > 0)
+            return "Produto disponivel.";
+
+        return "Sem estoque.";
     }
 
-    public void imprimir()
+    public string imprimir()
     {
-        Console.WriteLine(nome);
-        Console.WriteLine(preco);
-        Console.WriteLine(quantidadeEstoque);
+        return "\nNome: " + this.nome +
+               "\nPreco: " + this.preco +
+               "\nQuantidade em estoque: " + this.quantidadeEstoque;
     }
 }

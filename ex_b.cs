@@ -1,36 +1,46 @@
 using System;
 
-struct EquipeEsports
+namespace Struct;
+
+public struct EquipeEsports
 {
     public string nome;
-    public int campeonatosVencidos;
+    public int numeroCampeonatosVencidos;
     public double valorTotalPremiacoes;
     public DateTime dataEstreia;
 
+    public EquipeEsports(string nome, int numeroCampeonatosVencidos, double valorTotalPremiacoes, DateTime dataEstreia)
+    {
+        this.nome = nome;
+        this.numeroCampeonatosVencidos = numeroCampeonatosVencidos;
+        this.valorTotalPremiacoes = valorTotalPremiacoes;
+        this.dataEstreia = dataEstreia;
+    }
+
     public void registrarCampeonatoVencido(double valorPremio)
     {
-        campeonatosVencidos++;
-        atualizarValorTotalPremiacoes(valorPremio);
+        this.numeroCampeonatosVencidos++;
+        this.atualizarValorTotalPremiacoes(valorPremio);
     }
 
     public void atualizarValorTotalPremiacoes(double valor)
     {
-        valorTotalPremiacoes += valor;
+        this.valorTotalPremiacoes += valor;
     }
 
-    public void verificarAnoEstreia()
+    public string verificarAnoEstreia()
     {
-        if (dataEstreia.Year == DateTime.Now.Year)
-            Console.WriteLine("Equipe novata");
-        else
-            Console.WriteLine("Equipe veterana");
+        if (this.dataEstreia.Year == DateTime.Now.Year)
+            return "Equipe novata.";
+
+        return "Equipe veterana.";
     }
 
-    public void imprimir()
+    public string imprimir()
     {
-        Console.WriteLine(nome);
-        Console.WriteLine(campeonatosVencidos);
-        Console.WriteLine(valorTotalPremiacoes);
-        Console.WriteLine(dataEstreia.ToShortDateString());
+        return "\nNome: " + this.nome +
+               "\nCampeonatos vencidos: " + this.numeroCampeonatosVencidos +
+               "\nValor total das premiacoes: " + this.valorTotalPremiacoes +
+               "\nData de estreia: " + this.dataEstreia.ToShortDateString();
     }
 }

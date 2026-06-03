@@ -1,35 +1,43 @@
-using System;
+namespace Struct;
 
-struct JogadorFutebol
+public struct JogadorFutebol
 {
     public string nome;
     public string clube;
-    public int cartoesAmarelos;
-    public int cartoesVermelhos;
+    public int numeroCartoesAmarelos;
+    public int numeroCartoesVermelhos;
+
+    public JogadorFutebol(string nome, string clube, int numeroCartoesAmarelos, int numeroCartoesVermelhos)
+    {
+        this.nome = nome;
+        this.clube = clube;
+        this.numeroCartoesAmarelos = numeroCartoesAmarelos;
+        this.numeroCartoesVermelhos = numeroCartoesVermelhos;
+    }
 
     public void registrarNumeroCartoesAmarelos()
     {
-        cartoesAmarelos++;
+        this.numeroCartoesAmarelos++;
     }
 
     public void registrarNumeroCartoesVermelhos()
     {
-        cartoesVermelhos++;
+        this.numeroCartoesVermelhos++;
     }
 
-    public void verificarVinculoClube()
+    public string verificarVinculoClube()
     {
-        if (clube != "")
-            Console.WriteLine("Possui vínculo com clube.");
-        else
-            Console.WriteLine("Sem clube.");
+        if (this.clube != "")
+            return "Possui vinculo com clube.";
+
+        return "Sem clube.";
     }
 
-    public void imprimir()
+    public string imprimir()
     {
-        Console.WriteLine(nome);
-        Console.WriteLine(clube);
-        Console.WriteLine(cartoesAmarelos);
-        Console.WriteLine(cartoesVermelhos);
+        return "\nNome: " + this.nome +
+               "\nClube: " + this.clube +
+               "\nCartoes amarelos: " + this.numeroCartoesAmarelos +
+               "\nCartoes vermelhos: " + this.numeroCartoesVermelhos;
     }
 }
